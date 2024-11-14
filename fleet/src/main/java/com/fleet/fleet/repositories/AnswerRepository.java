@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer, Integer> {
 
-    List<Answer> findByAnswerAndChecklistId(String answer, Integer answerId);
+    List<Answer> findByAnswerAndChecklistId(String answer, Integer checklistId);
 }

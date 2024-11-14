@@ -9,6 +9,7 @@ import com.fleet.fleet.models.dto.ChecklistRequestDTO;
 import com.fleet.fleet.models.enums.AnswerOption;
 import com.fleet.fleet.models.enums.ChecklistStatus;
 import com.fleet.fleet.models.enums.Route;
+import com.fleet.fleet.models.enums.VehicleSituation;
 import com.fleet.fleet.repositories.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -100,7 +101,6 @@ public class ChecklistService {
         return newChecklist;
     }
 
-    @Transactional()
     public Checklist openChecklist(AnswersDTO answersDTO) {
         this.saveAnswers(answersDTO);
 
@@ -154,7 +154,7 @@ public class ChecklistService {
         this.checklistRepository.save(checklist);
 
         var vehicle = this.vehicleRepository.findByPlate(checklist.getCarPlate());
-        vehicle.setSituation('B');
+        vehicle.setSituation(VehicleSituation.BLOCKED.getSituation());
         this.vehicleRepository.save(vehicle);
 
         return checklist;
@@ -166,6 +166,7 @@ public class ChecklistService {
                     .checklistId(answersDTO.getChecklistId())
                     .questionId(answer.getQuestionId())
                     .answer(answer.getAnswer())
+                    .resolved(answer.getAnswer().equalsIgnoreCase(AnswerOption.NO_COMPLIANT.getAnswer()) ? 0 : 1)
                     .build());
         });
     }

@@ -30,4 +30,7 @@ public class Answer {
     @Column(name = "resposta")
     private String answer;
 
+    @Column(name = "resolvido")
+    private Integer resolved;
+
 }
