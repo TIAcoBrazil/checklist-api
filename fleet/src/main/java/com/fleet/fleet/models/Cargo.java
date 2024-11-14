@@ -10,20 +10,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "pccarreg")
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
-@Table(name = "pcveicul")
-public class Vehicle {
+public class Cargo {
 
     @Id
+    @Column(name = "numcar")
+    private Integer cargoId;
+
     @Column(name = "codveiculo")
-    private int id;
+    private Integer carId;
 
-    @Column(name = "placa")
-    private String plate;
-
-    @Column(name = "situacao")
-    private char situation;
+    @Column(name = "codmotorista")
+    private Integer driverId;
 }

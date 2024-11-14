@@ -17,4 +17,8 @@ public class QuestionsService {
     public List<QuestionView> getQuestions() {
          return questionRepository.getActiveQuestions();
     }
+
+    public Question getQuestion(Integer questionId) {
+        return questionRepository.findById(questionId.longValue()).get();
+    }
 }

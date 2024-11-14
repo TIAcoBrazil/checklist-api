@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
 
     Boolean existsByPlate(String carPlate);
+
+    Vehicle findByPlate(String plate);
 }
